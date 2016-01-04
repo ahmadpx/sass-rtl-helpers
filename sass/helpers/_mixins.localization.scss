@@ -13,8 +13,8 @@ ex.
     }
 }
 output:
-ltr -> nothing
-rtl ->
+ltr > nothing
+rtl >
 body {
     background: red;
 }
@@ -32,8 +32,8 @@ used to generate [left, right] properties according to page direction [ltr, rtl]
 ------------------------
 ex. @include left(15px)
 output:
-ltr -> left: 15px;
-rtl -> right: 15px;
+ltr > left: 15px;
+rtl > right: 15px;
 */
 @mixin left($value) {
     #{$default_float}: $value;
@@ -50,8 +50,8 @@ used to generate [float] property according to page direction [ltr, rtl]
 ------------------------
 ex. @include float(left)
 output:
-ltr -> float: left;
-rtl -> float: right;
+ltr > float: left;
+rtl > float: right;
 */
 @mixin float($dir) {
     float: swap-direction($dir);
@@ -64,8 +64,8 @@ used to generate [text-align] property according to page direction [ltr, rtl]
 ------------------------
 ex. @include text-align(left)
 output:
-ltr -> text-align: left;
-rtl -> text-align: right;
+ltr > text-align: left;
+rtl > text-align: right;
 */
 @mixin text-align($dir) {
     text-align: swap-direction($dir);
@@ -78,8 +78,8 @@ used to generate [clear] property according to page direction [ltr, rtl]
 ------------------------
 ex. @include clear(left)
 output:
-ltr -> clear: left;
-rtl -> clear: right;
+ltr > clear: left;
+rtl > clear: right;
 */
 @mixin clear($dir) {
     clear: swap-direction($dir);
@@ -92,8 +92,8 @@ used to generate [padding, padding-left, padding-right] properties according to 
 ------------------------
 ex. @include padding(5px 8px 3px 4px)
 output:
-ltr -> padding: 5px 8px 3px 4px;
-rtl -> padding: 5px 4px 3px 8px;
+ltr > padding: 5px 8px 3px 4px;
+rtl > padding: 5px 4px 3px 8px;
 */
 @mixin padding-left($unit) {
     padding-#{$default_float}: $unit;
@@ -119,8 +119,8 @@ used to generate [margin, margin-left, margin-right] properties according to pag
 ------------------------
 ex. @include margin(5px 8px 3px 4px)
 output:
-ltr -> margin: 5px 8px 3px 4px;
-rtl -> margin: 5px 4px 3px 8px;
+ltr > margin: 5px 8px 3px 4px;
+rtl > margin: 5px 4px 3px 8px;
 */
 @mixin margin-left($unit) {
     margin-#{$default_float}: $unit;
@@ -146,8 +146,8 @@ used to generate [border] properties according to page direction [ltr, rtl]
 ------------------------
 ex. @include border-left(1px solid green)
 output:
-ltr -> border-left: 1px solid green;
-rtl -> border-right: 1px solid green;
+ltr > border-left: 1px solid green;
+rtl > border-right: 1px solid green;
 */
 @mixin border-left($unit) {
     border-#{$default_float}: $unit;
@@ -180,8 +180,8 @@ used to generate [border-radius] property according to page direction [ltr, rtl]
 ------------------------
 ex. @include border-radius(5px 8px 3px 4px)
 output:
-ltr -> border-radius: 5px 8px 3px 4px;
-rtl -> border-radius: 8px 5px 4px 3px;
+ltr > border-radius: 5px 8px 3px 4px;
+rtl > border-radius: 8px 5px 4px 3px;
 */
 @mixin border-radius($values) {
     @if $default_direction == rtl and length($values) > 1 {

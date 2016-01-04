@@ -8,8 +8,8 @@ used with or without localization mixins in _mixins.localization.scss
 ex. background-img: ltr_rtl_values(15px, 10px);
 ex. @include margin-right(ltr_rtl_values(15px, 10px));
 output:
-ltr: margin-right: 15px;
-rtl: margin-left: 10px;
+ltr > margin-right: 15px;
+rtl > margin-left: 10px;
 */
 @function ltr-rtl-values($value, $opposite) {
     @if $default_direction == 'ltr' {
