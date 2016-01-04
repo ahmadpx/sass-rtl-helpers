@@ -1,0 +1,38 @@
+/* Helper functions */
+/* ................................................. */
+
+/* first of a list
+----------------------- */
+@function first($list) {
+    @return nth($list, 1);
+}
+
+/* last of a list
+----------------------- */
+@function last($list) {
+    @return nth($list, length($list));
+}
+
+/* Replace a value in list
+----------------------- */
+@function replace($list, $old-value, $new-value, $recursive: false) {
+    $result: ();
+
+    @for $i from 1 through length($list) {
+        @if type-of(nth($list, $i)) == list and $recursive {
+            $result: append($result, replace(nth($list, $i), $old-value, $new-value, $recursive));
+        } @else {
+            @if nth($list, $i) == $old-value {
+                $result: append($result, $new-value);
+            } @else {
+                $result: append($result, nth($list, $i));
+            }
+        }
+    }
+
+    @return $result;
+}
+
+
+
+

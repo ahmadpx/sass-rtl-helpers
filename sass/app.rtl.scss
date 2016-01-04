@@ -1,0 +1,19 @@
+/* Localization configuration */
+/* ................................................. */
+$default_direction: rtl;
+$opposite_direction: ltr;
+$default_float: right;
+$opposite_float: left;
+
+/* partials */
+/* ................................................. */
+@import "_partials";
+
+/* only in rtl */
+/* .................................................
+here @import stylesheets that's needed just in rtl direction*/
+
+
+
+
+

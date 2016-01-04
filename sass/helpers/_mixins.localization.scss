@@ -1,0 +1,241 @@
+/* Localization Mixins */
+/* ................................................. */
+
+/*
+only-in
+=============================================
+this mixin used to implement property in just one direction `ltr` or `rtl`
+------------------------------
+ex.
+@include only-in(rtl) {
+    body{
+        background: red;
+    }
+}
+output:
+ltr -> nothing
+rtl ->
+body {
+    background: red;
+}
+*/
+@mixin only-in($dir) {
+    @if $dir == $default_direction {
+        @content
+    }
+}
+
+/*
+font-family
+=============================================
+used to generate the right font-family according to page direction [ltr, rtl]
+fetching font fromt `$fonts` map in config.scss
+------------------------------
+ex. @include font-family(main)
+output:
+ltr -> font-family: main-en; `main-en` is a key in $fonts map in config.scss
+rtl -> font-family: main-ar; `main-ar` is a key in $fonts map in config.scss
+*/
+@mixin font-family($font) {
+    @if $default_direction == 'rtl' and $font == 'main' {
+        font-family: map-get($fonts, main-ar);
+    } @else if $font == 'main' {
+        font-family: map-get($fonts, main-en);
+    } @else {
+        @if map-has-key($fonts, $font) {
+            font-family: map-get($fonts, $font);
+        } @else {
+            font-family: $font;
+        }
+    }
+}
+
+/*
+directions
+=============================================
+used to generate [left, right] properties according to page direction [ltr, rtl]
+------------------------
+ex. @include left(15px)
+output:
+ltr -> left: 15px;
+rtl -> right: 15px;
+*/
+@mixin left($value) {
+    #{$default_float}: $value;
+}
+
+@mixin right($value) {
+    #{$opposite_float}: $value;
+}
+
+/*
+float
+=============================================
+used to generate [float] property according to page direction [ltr, rtl]
+------------------------
+ex. @include float(left)
+output:
+ltr -> float: left;
+rtl -> float: right;
+*/
+@mixin float($dir) {
+    float: swap-direction($dir);
+}
+
+/*
+text-align
+=============================================
+used to generate [text-align] property according to page direction [ltr, rtl]
+------------------------
+ex. @include text-align(left)
+output:
+ltr -> text-align: left;
+rtl -> text-align: right;
+*/
+@mixin text-align($dir) {
+    text-align: swap-direction($dir);
+}
+
+/*
+clear
+=============================================
+used to generate [clear] property according to page direction [ltr, rtl]
+------------------------
+ex. @include clear(left)
+output:
+ltr -> clear: left;
+rtl -> clear: right;
+*/
+@mixin clear($dir) {
+    clear: swap-direction($dir);
+}
+
+/*
+paddings
+=============================================
+used to generate [padding, padding-left, padding-right] properties according to page direction [ltr, rtl]
+------------------------
+ex. @include padding(5px 8px 3px 4px)
+output:
+ltr -> padding: 5px 8px 3px 4px;
+rtl -> padding: 5px 4px 3px 8px;
+*/
+@mixin padding-left($unit) {
+    padding-#{$default_float}: $unit;
+}
+
+@mixin padding-right($unit) {
+    padding-#{$opposite_float}: $unit;
+}
+
+@mixin padding($values) {
+    @if $default_direction == 'rtl' and length($values) >= 4 {
+        // Reorder right and left positions in list
+        padding: swap-side-values($values);
+    } @else {
+        padding: $values;
+    }
+}
+
+/*
+margins
+=============================================
+used to generate [margin, margin-left, margin-right] properties according to page direction [ltr, rtl]
+------------------------
+ex. @include margin(5px 8px 3px 4px)
+output:
+ltr -> margin: 5px 8px 3px 4px;
+rtl -> margin: 5px 4px 3px 8px;
+*/
+@mixin margin-left($unit) {
+    margin-#{$default_float}: $unit;
+}
+
+@mixin margin-right($unit) {
+    margin-#{$opposite_float}: $unit;
+}
+
+@mixin margin($values) {
+    @if $default_direction == 'rtl' and length($values) >= 4 {
+        // Reorder right and left positions in list
+        margin: swap-side-values($values);
+    } @else {
+        margin: $values;
+    }
+}
+
+/*
+border
+=============================================
+used to generate [border] properties according to page direction [ltr, rtl]
+------------------------
+ex. @include border-left(1px solid green)
+output:
+ltr -> border-left: 1px solid green;
+rtl -> border-right: 1px solid green;
+*/
+@mixin border-left($unit) {
+    border-#{$default_float}: $unit;
+}
+
+@mixin border-right($unit) {
+    border-#{$opposite_float}: $unit;
+}
+
+@mixin border-left-color($unit) {
+    border-#{$default_float}-color: $unit;
+}
+
+@mixin border-right-color($unit) {
+    border-#{$opposite_float}-color: $unit;
+}
+
+@mixin border-left-width($unit) {
+    border-#{$default_float}-width: $unit;
+}
+
+@mixin border-right-width($unit) {
+    border-#{$opposite_float}-width: $unit;
+}
+
+/*
+border-radius
+=============================================
+used to generate [border-radius] property according to page direction [ltr, rtl]
+------------------------
+ex. @include border-radius(5px 8px 3px 4px)
+output:
+ltr -> border-radius: 5px 8px 3px 4px;
+rtl -> border-radius: 8px 5px 4px 3px;
+*/
+@mixin border-radius($values) {
+    @if $default_direction == rtl and length($values) > 1 {
+        // Reorder right and left positions in list
+        border-radius: swap-corner-values($values);
+    } @else {
+        border-radius: $values;
+    }
+}
+
+/*
+box-shadow
+=============================================
+used to generate [box-shadow] property according to page direction [ltr, rtl]
+------------------------
+ex. @include box-shadow(2px 5px 0 #000,1px 3px 0 #000,4px 2px 0 #000 !important)
+output :
+box-shadow: -2px 5px 0 #000,-1px 3px 0 #000,-4px 2px 0 #000 !important;
+*/
+@mixin box-shadow($values...) {
+    $result: ();
+    @if $default_direction == rtl {
+        @for $i from 1 through length($values) {
+            $result: append($result, swap-box-shadow(nth($values, $i)), comma);
+        }
+    } @else {
+        @for $i from 1 through length($values) {
+            $result: append($result, nth($values, $i), comma);
+        }
+    }
+    box-shadow: $result;
+}

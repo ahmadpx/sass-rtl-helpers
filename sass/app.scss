@@ -1,0 +1,15 @@
+/* Localization configuration */
+/* ................................................. */
+$default_direction: ltr;
+$opposite_direction: rtl;
+$default_float: left;
+$opposite_float: right;
+
+/* partials */
+/* .................................................
+include all your partials in _partials.scss */
+@import "_partials";
+
+/* only in ltr */
+/* .................................................
+here @import stylesheets that's needed just in ltr direction*/

@@ -1,0 +1,17 @@
+/* partials */
+/* .................................................
+Here goes partials that imported in app.scss & app.rtl.scss */
+
+/* Helpers */
+/* .................................................
+things that don't need compilation [variables, functions, mixins] */
+
+@import "helpers/_functions.helpers";
+@import "helpers/_functions.localization";
+@import "helpers/_mixins.localization";
+
+/* Sass Structure */
+/* .................................................
+Here goes project sass structure. If your mind is open for new ideas about your sass structure
+i recommend ITCSS [http://itcss.io/] for structuring Sass projects that scale, check it out in this
+amazing article : [http://thomasbyttebier.be/blog/less-css-mess] */
