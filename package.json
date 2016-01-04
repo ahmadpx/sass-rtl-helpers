@@ -1,0 +1,23 @@
+{
+  "name": "sass-rtl-helpers",
+  "version": "1.0.0",
+  "description": "These mixins and functions helps you to support rtl to your poject while Sass generates two files one for each direction.",
+  "main": "gulpfile.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmadpx/Sass-rtl-helpers.git"
+  },
+  "keywords": [
+    "Sass",
+    "rtl",
+    "helpers",
+    "direction",
+    "localization"
+  ],
+  "author": "Ahmed Abdallah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ahmadpx/Sass-rtl-helpers/issues"
+  },
+  "homepage": "https://github.com/ahmadpx/Sass-rtl-helpers#readme"
+}
