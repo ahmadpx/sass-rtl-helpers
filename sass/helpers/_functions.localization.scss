@@ -91,7 +91,15 @@ float: left;
     }
 }
 
-
+/*
+swap-box-shadow
+=============================================
+this function is valid for one value for box-shadow if you want to use multible values for box-shadow
+use the mixin of box-shadow() in _mixins.localization.scss
+ex. box-shadow: swap-box-shadow(2px 5px 0 #000 !important);
+output :
+box-shadow: -2px 5px 0 #000 !important;
+*/
 @function swap-box-shadow ($values) {
     // Reedit axis values in rtl direction
     @if length($values) == 6 {
