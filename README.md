@@ -33,60 +33,60 @@ sass/
 ```
 
 
-## @Functions
-#### ltr_rtl_values
+## Functions
+#### ltr-rtl-values($default-value, $opposite-value)
 
 Used with or without localization mixins in `_mixins.localization.scss`
 ```
-font-size: ltr_rtl_values(12px, 14px);
+font-size: ltr-rtl-values(12px, 14px);
 ```
-output
+Output
 ```
 ltr > font-size: 12px;
 rtl > font-size: 14px;
 ```
 
-#### swap-side-values
+#### swap-side-values($value)
 
-used to Reorder values according to direction such as margin and padding
+Used to Reorder values according to direction such as margin and padding
 ```
 padding: swap-side-values(2px 4px 3px 5px);
 ```
-output
+Output
 ```
 padding: 2px 5px 3px 4px;
 ```
 
-#### swap-corner-values
+#### swap-corner-values($value)
 
-used to Reorder values according to direction such as border-radius
+Used to Reorder values according to direction such as border-radius
 ```
 border-radius: swap-corner-values(5px 8px 3px 4px);
 ```
-output
+Output
 ```
 border-radius: 8px 5px 4px 3px;
 ```
 
-#### swap-direction
+#### swap-direction($value)
 
-swap direction from left to right and vice versa
+Used to swap direction from left to right and vice versa
 ```
 float: swap-direction(right);
 ```
-output
+Output
 ```
 float: left;
 ```
 
-#### swap-box-shadow
+#### swap-box-shadow($value)
 
-this function is valid for one value for box-shadow if you want to use multible values for box-shadow
+This function is valid for one value for box-shadow if you want to use multible values for box-shadow
 use the mixin of box-shadow() in `_mixins.localization.scss`
 ```
 box-shadow: swap-box-shadow(2px 5px 0 #000 !important);
 ```
-output
+Output
 ```
 box-shadow: -2px 5px 0 #000 !important;
 ```
@@ -94,7 +94,7 @@ box-shadow: -2px 5px 0 #000 !important;
 ## Mixins
 #### only-in($dir)
 
-this mixin used to implement property or rule in just one direction `ltr` or `rtl`
+This mixin used to implement property or rule in just one direction `ltr` or `rtl`
 ```
 @include only-in(rtl) {
     body{
@@ -102,7 +102,7 @@ this mixin used to implement property or rule in just one direction `ltr` or `rt
     }
 }
 ```
-output
+Output
 ```
 ltr > nothing
 rtl >
@@ -113,11 +113,11 @@ body {
 
 #### left($value), right($value)
 
-used to generate [left, right] properties according to page direction `ltr` or `rtl`
+Used to generate [left, right] properties according to page direction `ltr` or `rtl`
 ```
 @include left(15px);
 ```
-output
+Output
 ```
 ltr > left: 15px;
 rtl > right: 15px;
@@ -125,11 +125,11 @@ rtl > right: 15px;
 
 #### float($dir)
 
-used to generate [float] property according to page direction `ltr` or `rtl`
+Used to generate [float] property according to page direction `ltr` or `rtl`
 ```
 @include float(left);
 ```
-output
+Output
 ```
 ltr > float: left;
 rtl > float: right;
@@ -137,11 +137,11 @@ rtl > float: right;
 
 #### text-align($dir)
 
-used to generate [text-align] property according to page direction `ltr` or `rtl`
+Used to generate [text-align] property according to page direction `ltr` or `rtl`
 ```
 @include text-align(left);
 ```
-output
+Output
 ```
 ltr > text-align: left;
 rtl > text-align: right;
@@ -149,11 +149,11 @@ rtl > text-align: right;
 
 #### clear($dir)
 
-used to generate [clear] property according to page direction `ltr` or `rtl`
+Used to generate [clear] property according to page direction `ltr` or `rtl`
 ```
 @include clear(left);
 ```
-output
+Output
 ```
 ltr > clear: left;
 rtl > clear: right;
@@ -161,11 +161,11 @@ rtl > clear: right;
 
 #### padding($value), padding-left($value), padding-right($value)
 
-used to generate [padding, padding-left, padding-right] properties according to page direction `ltr` or `rtl`
+Used to generate [padding, padding-left, padding-right] properties according to page direction `ltr` or `rtl`
 ```
 @include padding(5px 8px 3px 4px);
 ```
-output
+Output
 ```
 ltr > padding: 5px 8px 3px 4px;
 rtl > padding: 5px 4px 3px 8px;
@@ -174,11 +174,11 @@ rtl > padding: 5px 4px 3px 8px;
 
 #### margin($value), margin-left($value), margin-right($value)
 
-used to generate [margin, margin-left, margin-right] properties according to page direction `ltr` or `rtl`
+Used to generate [margin, margin-left, margin-right] properties according to page direction `ltr` or `rtl`
 ```
 @include margin(5px 8px 3px 4px);
 ```
-output
+Output
 ```
 ltr > margin: 5px 8px 3px 4px;
 rtl > margin: 5px 4px 3px 8px;
@@ -187,11 +187,11 @@ rtl > margin: 5px 4px 3px 8px;
 #### border($value), border-left($value), border-right($value), border-left-color($value), border-left-width($value), 
 border-right-color($value), border-right-width($value)
 
-used to generate border properties according to page direction `ltr` or `rtl`
+Used to generate border properties according to page direction `ltr` or `rtl`
 ```
 @include border-left(1px solid green);
 ```
-output
+Output
 ```
 ltr > border-left: 1px solid green;
 rtl > border-right: 1px solid green;
@@ -199,11 +199,11 @@ rtl > border-right: 1px solid green;
 
 #### border-radius($value)
 
-used to generate border-radius according to page direction `ltr` or `rtl`
+Used to generate border-radius according to page direction `ltr` or `rtl`
 ```
 @include @include border-radius(5px 8px 3px 4px);
 ```
-output
+Output
 ```
 ltr > border-radius: 5px 8px 3px 4px;
 rtl > border-radius: 8px 5px 4px 3px;
@@ -211,11 +211,11 @@ rtl > border-radius: 8px 5px 4px 3px;
 
 #### border-shadow($values...)
 
-used to generate border-shadow according to page direction `ltr` or `rtl`. This mixin supports multiple values.
+Used to generate border-shadow according to page direction `ltr` or `rtl`. This mixin supports multiple values.
 ```
 @include @include border-shadow(2px 5px 0 #000,1px 3px 0 #000,4px 2px 0 #000 !important);
 ```
-output
+Output
 ```
 ltr > border-shadow: 2px 5px 0 #000,1px 3px 0 #000,4px 2px 0 #000 !important;
 rtl > border-shadow: -2px 5px 0 #000,-1px 3px 0 #000,-4px 2px 0 #000 !important;

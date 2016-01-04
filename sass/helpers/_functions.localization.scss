@@ -11,7 +11,7 @@ output:
 ltr: margin-right: 15px;
 rtl: margin-left: 10px;
 */
-@function ltr_rtl_values($value, $opposite) {
+@function ltr-rtl-values($value, $opposite) {
     @if $default_direction == 'ltr' {
         @return $value;
     } @else if $default_direction == 'rtl' {
