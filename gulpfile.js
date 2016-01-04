@@ -47,7 +47,11 @@ gulp.task('watch', function () {
 
 // BROSERSYNC live reload
 gulp.task('serve', ['sass', 'html', 'watch'], function () {
-    browserSync.init();
+    browserSync.init({
+        server: {
+            baseDir: "./"
+        }
+    });
 });
 
 // DEFAULT TASK
