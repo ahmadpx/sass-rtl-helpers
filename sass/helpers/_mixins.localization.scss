@@ -26,31 +26,6 @@ body {
 }
 
 /*
-font-family
-=============================================
-used to generate the right font-family according to page direction [ltr, rtl]
-fetching font fromt `$fonts` map in config.scss
-------------------------------
-ex. @include font-family(main)
-output:
-ltr -> font-family: main-en; `main-en` is a key in $fonts map in config.scss
-rtl -> font-family: main-ar; `main-ar` is a key in $fonts map in config.scss
-*/
-@mixin font-family($font) {
-    @if $default_direction == 'rtl' and $font == 'main' {
-        font-family: map-get($fonts, main-ar);
-    } @else if $font == 'main' {
-        font-family: map-get($fonts, main-en);
-    } @else {
-        @if map-has-key($fonts, $font) {
-            font-family: map-get($fonts, $font);
-        } @else {
-            font-family: $font;
-        }
-    }
-}
-
-/*
 directions
 =============================================
 used to generate [left, right] properties according to page direction [ltr, rtl]
